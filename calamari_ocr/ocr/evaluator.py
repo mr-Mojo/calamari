@@ -39,18 +39,17 @@ class Evaluator:
 
         """
 
-        print("TEST ---------------------------------")
         #gt_dataset.load_samples(progress_bar=progress_bar)
-        print("TEST2 ---------------------------------")
         with StreamingInputDataset(gt_dataset, None, self.text_preprocessor, processes=1) as gt_input_dataset:
             gt_data = [txt for _, txt, _ in tqdm_wrapper(gt_input_dataset.generator(text_only=True),
                                                          total=len(gt_dataset),
                                                          progress_bar=progress_bar,
                                                          )]
+        txt = gt_data[0]
 
-        print("TEST3 ---------------------------------")
-
-        self.preloaded_gt = self.text_preprocessor.apply(gt_dataset.text_samples(), progress_bar=progress_bar)
+        print("TEST _------------__ -------------")
+        #self.preloaded_gt = self.text_preprocessor.apply(gt_dataset.text_samples(), progress_bar=progress_bar)
+        self.preloaded_gt = self.text_preprocessor.apply(gt_data.text_samples(), progress_bar=progress_bar)
 
     def run(self, _sentinel=None, gt_dataset=None, pred_dataset=None, processes=1, progress_bar=False):
         """ evaluate on the given dataset
@@ -75,7 +74,7 @@ class Evaluator:
         if _sentinel:
             raise Exception("You must call run by using parameter names.")
 
-        if self.preloaded_gt:
+        if not self.preloaded_gt:
             gt_data = self.preloaded_gt
         else:
             # gt_dataset.load_samples(progress_bar=progress_bar)
