@@ -47,7 +47,7 @@ def main():
 
     dataset = create_dataset(
         args.eval_dataset,
-        DataSetMode.PREDICT_AND_EVAL,
+        DataSetMode.TRAIN,
         images=gt_images,
         texts=gt_txts,
         skip_invalid=not args.no_skip_invalid_gt
