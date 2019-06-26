@@ -52,7 +52,8 @@ def main():
         DataSetMode.TRAIN,
         images=gt_images,
         texts=gt_txts,
-        skip_invalid=not args.no_skip_invalid_gt
+        #skip_invalid=not args.no_skip_invalid_gt
+        non_existing_as_empty=True
     )
 
     print("Found {} files in the dataset".format(len(dataset)))
