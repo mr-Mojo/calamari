@@ -20,6 +20,7 @@ class DataSetMode(Enum):
     TRAIN = 0
     PREDICT = 1
     EVAL = 2
+    PREDICT_AND_EVAL = 3
 
 
 RequestParams = namedtuple('RequestParams', ('epochs', 'text_only'))
@@ -156,8 +157,8 @@ class DataSet(ABC):
         self._samples.append(sample)
 
     def is_sample_valid(self, sample, line, text):
-        if self.mode == DataSetMode.PREDICT or self.mode == DataSetMode.TRAIN:
-            # skip invalid imanges (e. g. corrupted or empty files)
+        if self.mode == DataSetMode.PREDICT or self.mode == DataSetMode.TRAIN or self.mode == DataSetMode.PREDICT_AND_EVAL:
+            # skip invalid images (e. g. corrupted or empty files)
             if line is None or (line.size == 0 or np.amax(line) == np.amin(line)):
                 return False
 

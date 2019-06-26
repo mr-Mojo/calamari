@@ -80,10 +80,10 @@ class FileDataSet(DataSet):
         images = [] if images is None else images
         texts = [] if texts is None else texts
 
-        if mode == DataSetMode.PREDICT:
+        if mode == DataSetMode.PREDICT or mode == DataSetMode.PREDICT_AND_EVAL:
             texts = [None] * len(images)
 
-        if mode == DataSetMode.EVAL:
+        if mode == DataSetMode.EVAL or mode == DataSetMode.PREDICT_AND_EVAL:
             images = [None] * len(texts)
 
         for image, text in zip(images, texts):

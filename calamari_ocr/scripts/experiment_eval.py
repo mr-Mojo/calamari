@@ -37,9 +37,17 @@ def main():
     gt_images = sorted(glob_all(args.eval_imgs))
     gt_txts = [split_all_ext(path)[0] + ".gt.txt" for path in sorted(glob_all(args.eval_imgs))]
 
+    # dataset = create_dataset(
+    #     args.eval_dataset,
+    #     DataSetMode.TRAIN,
+    #     images=gt_images,
+    #     texts=gt_txts,
+    #     skip_invalid=not args.no_skip_invalid_gt
+    # )
+
     dataset = create_dataset(
         args.eval_dataset,
-        DataSetMode.TRAIN,
+        DataSetMode.PREDICT_AND_EVAL,
         images=gt_images,
         texts=gt_txts,
         skip_invalid=not args.no_skip_invalid_gt
