@@ -229,7 +229,8 @@ class StreamingInputDataset(InputDataset):
                  data_augmentation_amount: float = 0,
                  skip_invalid_gt=True,
                  processes=4):
-        super().__init__(dataset.mode)
+        #super().__init__(dataset.mode)
+        super().__init__(DataSetMode.PREDICT_AND_EVAL)
         self.dataset = dataset
         self.data_processor = data_preprocessor
         self.text_processor = text_preprocessor
