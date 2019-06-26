@@ -21,10 +21,13 @@ def main():
     image_files = glob_all(args.files)
     gt_files = [split_all_ext(p)[0] + ".gt.txt" for p in image_files]
 
+
     ds = create_dataset(
         args.dataset,
         DataSetMode.TRAIN,
-        images=image_files, texts=gt_files, non_existing_as_empty=True)
+        images=image_files,
+        texts=gt_files,
+        non_existing_as_empty=True)
 
     print("Loading {} files".format(len(image_files)))
     ds.load_samples(processes=1, progress_bar=True)

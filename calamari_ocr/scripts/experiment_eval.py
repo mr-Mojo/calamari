@@ -45,6 +45,8 @@ def main():
     #     skip_invalid=not args.no_skip_invalid_gt
     # )
 
+    print("DATASET MODE -----------------------------------------------\n\n", args.eval_dataset)
+
     dataset = create_dataset(
         args.eval_dataset,
         DataSetMode.TRAIN,
