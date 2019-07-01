@@ -185,6 +185,7 @@ def main():
             text_preproc = text_processor_from_proto(checkpoint_params.model.text_preprocessor)
 
     non_existing_as_empty = args.non_existing_file_handling_mode.lower() != "error "
+
     gt_data_set = create_dataset(
         args.dataset,
         DataSetMode.EVAL,

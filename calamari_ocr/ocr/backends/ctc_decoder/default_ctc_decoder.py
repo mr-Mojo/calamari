@@ -38,6 +38,7 @@ class DefaultCTCDecoder(CTCDecoder):
         tmp = []
         isFirst = True
         startIndex = 0
+        print("bla")
         for idx, c in enumerate(chars):
             if c != self.blank:
                 if isFirst:

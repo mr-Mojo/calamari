@@ -27,6 +27,12 @@ def main():
     parser.add_argument("--no_skip_invalid_gt", action="store_true",
                         help="Do no skip invalid gt, instead raise an exception.")
 
+    #TODO: copied
+    # page xml specific args
+    parser.add_argument("--pagexml_gt_text_index", default=0)
+    parser.add_argument("--pagexml_pred_text_index", default=1)
+
+
     args = parser.parse_args()
 
     # allow user to specify json file for model definition, but remove the file extension
@@ -45,11 +51,23 @@ def main():
     #     skip_invalid=not args.no_skip_invalid_gt
     # )
 
+    non_existing_as_empty = args.non_existing_file_handling_mode.lower() != "error "
+
+
     print("DATASET MODE -----------------------------------------------\n\n", args.eval_dataset)
 
-    dataset = create_dataset(
+    #TODO: just copied
+    gt_dataset = create_dataset(
+        args.dataset,
+        DataSetMode.EVAL,
+        images=gt_images,
+        texts=gt_txts,
+        skip_invalid=not args.no_skip_invalid_gt
+    )
+
+    pred_dataset = create_dataset(
         args.eval_dataset,
-        DataSetMode.TRAIN,
+        DataSetMode.PREDICT_AND_EVAL,
         images=gt_images,
         texts=gt_txts,
         skip_invalid=not args.no_skip_invalid_gt
