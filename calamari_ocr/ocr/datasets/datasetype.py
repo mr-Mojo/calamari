@@ -48,6 +48,7 @@ class DataSetType(IntEnum):
 
     @staticmethod
     def pred_extension(type):
+        print("dataset type", type)
         return {
             DataSetType.RAW: None,
             DataSetType.FILE: ".pred.txt",
