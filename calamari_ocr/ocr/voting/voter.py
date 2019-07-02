@@ -24,6 +24,8 @@ class Voter(ABC):
     def vote_prediction_result_tuple(self, predictions):
         p = Prediction()
         p.is_voted_result = True
+        print("PREDICTIONS:",predictions)
+        print("P:",p)
         self._apply_vote(predictions, p)
 
         # postprocessing after voting
@@ -32,7 +34,9 @@ class Voter(ABC):
         # option 3: Apply all known postprocessors and apply a sequence voting if different results are received
         if self.text_postproc:
             p.sentence = self.text_postproc.apply(p.sentence)
+            print("got into first")
         else:
+            print("got into second")
             sentences = [pred.text_postproc.apply(p.sentence) for pred in predictions]
 
             if all([s == sentences[0] for s in sentences[1:]]):
@@ -43,10 +47,13 @@ class Voter(ABC):
                 from calamari_ocr.ocr.voting import SequenceVoter
                 sv = SequenceVoter()
                 p.sentence = [c for c, _ in sv.process_text(sentences)]
+                print("p sentence:", p.sentence)
 
+        print("p positions:",p.positions)
         p.avg_char_probability = 0
         for pos in p.positions:
             if len(pos.chars) > 0:
+                print("pos.chars[0].prob:",pos.chars[0].probability)
                 p.avg_char_probability += pos.chars[0].probability
         p.avg_char_probability /= len(p.positions) if len(p.positions) > 0 else 1
 

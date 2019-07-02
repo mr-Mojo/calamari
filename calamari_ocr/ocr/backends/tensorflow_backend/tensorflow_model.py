@@ -1,4 +1,4 @@
-import sys
+    import sys
 import tensorflow as tf
 import tensorflow.contrib.cudnn_rnn as cudnn_rnn
 from tensorflow.python.ops import ctc_ops
