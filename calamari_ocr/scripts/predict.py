@@ -32,7 +32,6 @@ def run(args):
     args.checkpoint = glob_all(args.checkpoint)
     args.checkpoint = [cp[:-5] for cp in args.checkpoint]
 
-    args.extension = '.pred'
     args.extension = args.extension if args.extension else DataSetType.pred_extension(args.dataset)
 
     # create voter
@@ -159,4 +158,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+main()
