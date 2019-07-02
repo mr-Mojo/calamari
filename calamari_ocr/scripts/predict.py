@@ -32,7 +32,7 @@ def run(args):
     args.checkpoint = glob_all(args.checkpoint)
     args.checkpoint = [cp[:-5] for cp in args.checkpoint]
 
-    args.extension = '.png'
+    args.extension = '.pred'
     args.extension = args.extension if args.extension else DataSetType.pred_extension(args.dataset)
 
     # create voter
