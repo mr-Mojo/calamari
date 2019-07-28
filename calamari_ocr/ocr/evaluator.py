@@ -6,7 +6,7 @@ from calamari_ocr.utils import parallel_map, tqdm_wrapper
 from calamari_ocr.ocr.datasets import StreamingInputDataset
 from collections import namedtuple
 
-
+# test - debug
 SingleEvalData = namedtuple('SingleEvalData', ['chars', 'char_errs', 'sync_errs', 'conf', 'gt_pred'])
 
 
